@@ -4,23 +4,23 @@
     "logo": "/images/logo-transparent.png"
   },
   "pricing": {
-    "baseMid": 850,
-    "baseWinter": 1200,
-    "baseSummer": 750,
+    "baseMid": 1500,
+    "baseWinter": 3500,
+    "baseSummer": 2500,
     "cleaning": 250,
-    "lateCheckout": 150,
-    "transfer": 200,
-    "discount7Pct": 10,
+    "lateCheckout": 200,
+    "transfer": 198,
+    "discount7Pct": 8,
     "discount14Pct": 15
   },
   "contact": {
-    "phone": "+13056041000",
-    "whatsapp": "13056041000",
-    "email": "hello@miamionlyone.com"
+    "phone": "+33650928134",
+    "whatsapp": "33650928134",
+    "email": "miamionlyone@gmail.com"
   },
   "hero": {
     "fr": {
-      "eyebrow": "SOUTH BEACH, MIAMI — RÉSIDENCE PRIVÉE",
+      "eyebrow": "1 HOTEL AND HOMES SOUTH BEACH, MIAMI LUXURY — RÉSIDENCE PRIVÉE",
       "title": "Une adresse d'exception face à l'océan",
       "subtitle": "Résidence privée de luxe au cœur du 1 Hotel South Beach — 600 pieds de plage, sanctuaire durable étoilé MICHELIN. Accès exclusif aux restaurants, spas et piscines du resort.",
       "cta1": "Voir les Tarifs & Disponibilités",
