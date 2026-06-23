@@ -426,6 +426,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.f
 .bm-wa{background:#25D366;color:#fff}
 .bm-email{background:var(--ink);color:#fff}
 
+/* ---------- Formulaires (Netlify Forms) ---------- */
+.hp{position:absolute!important;left:-9999px!important;height:0;overflow:hidden}
+.bm-form{margin-top:4px}
+.bm-form-h,.cf-h{font-family:var(--serif);font-size:18px;font-weight:500;margin:8px 0 14px;color:var(--ink)}
+.bm-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.bm-form-grid .bm-field:first-child{grid-column:1/-1}
+.bm-field,.cf-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.bm-field span,.cf-field span{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink-soft)}
+.bm-field input,.cf-field input,.cf-field textarea{border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-family:var(--sans);font-size:14.5px;background:#fff;color:var(--ink);width:100%}
+.cf-field textarea{resize:vertical;min-height:90px}
+.bm-field input:focus,.cf-field input:focus,.cf-field textarea:focus{outline:none;border-color:var(--turquoise-deep);box-shadow:0 0 0 3px rgba(31,201,195,.16)}
+.bm-form .bm-actions{margin-top:2px}
+.bm-form button.bm-email{border:none;cursor:pointer;font-family:var(--sans)}
+.lead-msg{font-size:13.5px;margin-top:12px;line-height:1.5;display:none}
+.lead-msg.ok,.lead-msg.err{display:block;animation:rise .4s ease}
+.lead-msg.ok{color:var(--turquoise-deep);font-weight:600}
+.lead-msg.err{color:var(--sunset-deep);font-weight:600}
+.contact-form{max-width:560px;margin:42px auto 0;text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-sm)}
+.cf-h{text-align:center;font-size:21px}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-submit{width:100%;margin-top:6px;background:var(--ink);color:#fff;border:none;border-radius:30px;padding:14px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:background .25s,transform .2s}
+.cf-submit:hover{background:var(--sunset-deep);transform:translateY(-1px)}
+.cf-submit:disabled,.bm-form button:disabled{opacity:.6;cursor:default;transform:none}
+@media(max-width:560px){.bm-form-grid,.cf-grid{grid-template-columns:1fr}}
 @media(max-width:980px){
   .nav-links{display:none}
   .burger{display:flex}
@@ -920,6 +944,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.f
           <span class="cv">hello@miamionlyone.com</span>
         </a>
       </div>
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" onsubmit="return submitLead(event,'contact')">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <input type="hidden" name="lang">
+        <div class="cf-h" data-i18n="ct_form_h">Ou écrivez-nous directement</div>
+        <div class="cf-grid">
+          <label class="cf-field"><span data-i18n="f_name">Nom complet</span><input type="text" name="nom" required></label>
+          <label class="cf-field"><span data-i18n="f_email">Email</span><input type="email" name="email" required></label>
+        </div>
+        <label class="cf-field"><span data-i18n="f_message">Votre message</span><textarea name="message" rows="4" required></textarea></label>
+        <button type="submit" class="cf-submit"><span data-i18n="f_send">Envoyer ma demande</span></button>
+        <div class="lead-msg" id="lead-msg-contact" role="status"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -1021,16 +1058,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.f
       <div class="bm-total-row"><span class="k" data-i18n="bm_total">Total estimé</span><span class="v" id="bm-total">—</span></div>
       <p class="bm-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg><span data-i18n="bm_note">Le tarif définitif sera confirmé par votre interlocuteur dédié sous 1h.</span></p>
 
-      <div class="bm-actions">
-        <a class="bm-wa" id="bm-wa-link" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 13.9c-.2.6-1.2 1.2-1.7 1.2s-1.2.2-3.8-.9c-2.7-1.2-4.3-4-4.5-4.2s-1-1.4-1-2.6.6-1.8.8-2.1c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.1c0 .2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.2.1.9-.1 1.5Z"/></svg>
-          <span data-i18n="bm_confirm_wa">Confirmer via WhatsApp</span>
-        </a>
-        <a class="bm-email" id="bm-email-link" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span data-i18n="bm_confirm_email">Confirmer par Email</span>
-        </a>
-      </div>
+      <form name="reservation" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="bm-form" onsubmit="return submitLead(event,'reservation')">
+        <input type="hidden" name="form-name" value="reservation">
+        <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <input type="hidden" name="lang">
+        <input type="hidden" name="arrivee" id="lead-checkin">
+        <input type="hidden" name="depart" id="lead-checkout">
+        <input type="hidden" name="nuits" id="lead-nights">
+        <input type="hidden" name="voyageurs" id="lead-guests">
+        <input type="hidden" name="options" id="lead-options">
+        <input type="hidden" name="total_estime" id="lead-total">
+        <div class="bm-form-h" data-i18n="bm_form_h">Recevez votre devis personnalisé</div>
+        <div class="bm-form-grid">
+          <label class="bm-field"><span data-i18n="f_name">Nom complet</span><input type="text" name="nom" required></label>
+          <label class="bm-field"><span data-i18n="f_email">Email</span><input type="email" name="email" required></label>
+          <label class="bm-field"><span data-i18n="f_phone">Téléphone</span><input type="tel" name="telephone"></label>
+        </div>
+        <div class="bm-actions">
+          <button type="submit" class="bm-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="f_send">Envoyer ma demande</span>
+          </button>
+          <a class="bm-wa" id="bm-wa-link" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 13.9c-.2.6-1.2 1.2-1.7 1.2s-1.2.2-3.8-.9c-2.7-1.2-4.3-4-4.5-4.2s-1-1.4-1-2.6.6-1.8.8-2.1c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .7.5l.9 2.1c0 .2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.2.1.9-.1 1.5Z"/></svg>
+            <span data-i18n="bm_confirm_wa">Confirmer via WhatsApp</span>
+          </a>
+        </div>
+        <div class="lead-msg" id="lead-msg-reservation" role="status"></div>
+      </form>
     </div>
   </div>
 </div>
@@ -1136,6 +1191,7 @@ function openBookingModal(){
   if(nights>=14)base=Math.round(base*(1-PRICING.discount14Pct/100));
   _bookingAccom=base*nights;
   _bookingCi=ci;_bookingCo=co;_bookingNights=nights;_bookingAdults=adults;_bookingChildren=children;
+  (function(){const sf=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v;};sf('lead-checkin',ci);sf('lead-checkout',co);sf('lead-nights',nights);sf('lead-guests',adults+' adultes / '+children+' enfants');})();
   const loc=lang==='en'?'en-US':lang==='es'?'es-ES':'fr-FR';
   document.getElementById('bm-checkin').textContent=d1.toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'});
   document.getElementById('bm-checkout').textContent=d2.toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'});
@@ -1160,7 +1216,23 @@ function recalcTotal(){
   if(document.getElementById('opt-transfer').checked) opts.push('Transfert aéroport: $'+PRICING.transfer);
   const body='Réservation Miami Only One\nArrivée: '+_bookingCi+'\nDépart: '+_bookingCo+'\n'+_bookingNights+' nuits\nAdultes: '+_bookingAdults+' / Enfants: '+_bookingChildren+'\nHébergement: $'+_bookingAccom.toLocaleString('en-US')+'\nOptions: '+opts.join(', ')+'\nTotal estimé: $'+total.toLocaleString('en-US');
   document.getElementById('bm-wa-link').href='https://wa.me/'+CONTACT.whatsapp+'?text='+encodeURIComponent(body);
-  document.getElementById('bm-email-link').href='mailto:'+CONTACT.email+'?subject='+encodeURIComponent('Réservation Miami Only One')+'&body='+encodeURIComponent(body);
+  const _s=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v;};
+  _s('lead-options',opts.join(', '));_s('lead-total','$'+total.toLocaleString('en-US'));
+}
+function submitLead(e,name){
+  e.preventDefault();
+  const form=e.target;
+  const li=form.querySelector('input[name="lang"]'); if(li) li.value=document.documentElement.lang||'fr';
+  const msg=document.getElementById('lead-msg-'+name);
+  const btn=form.querySelector('button[type="submit"]'); const span=btn?btn.querySelector('span'):null;
+  const old=span?span.textContent:''; if(btn)btn.disabled=true; if(span)span.textContent=tr('f_sending');
+  if(msg){msg.textContent='';msg.className='lead-msg';}
+  const body=new URLSearchParams(new FormData(form)).toString();
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body})
+    .then(r=>{ if(!r.ok) throw 0; form.reset(); if(msg){msg.textContent=tr('f_ok');msg.className='lead-msg ok';} })
+    .catch(()=>{ if(msg){msg.textContent=tr('f_err');msg.className='lead-msg err';} })
+    .finally(()=>{ if(btn)btn.disabled=false; if(span)span.textContent=old; });
+  return false;
 }
 function closeBookingModal(){
   document.getElementById('bookingModal').classList.remove('active');

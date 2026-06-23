@@ -186,7 +186,17 @@
       "seo3p": "En réservant directement avec Miami Only One, vous bénéficiez d'un interlocuteur dédié francophone disponible avant, pendant et après votre séjour. Aucune commission de plateforme — vous économisez entre 15% et 20% par rapport à Airbnb ou VRBO. Séjour minimum de 2 nuits, tarifs dégressifs dès 7 nuits.",
       "foot_p": "Résidence privée de luxe face à l'océan Atlantique. Réservation directe, sans commission, avec interlocuteur dédié.",
       "foot_nav": "Navigation",
-      "foot_contact": "Contact"
+      "foot_contact": "Contact",
+      "bm_form_h": "Recevez votre devis personnalisé",
+      "ct_form_h": "Ou écrivez-nous directement",
+      "f_name": "Nom complet",
+      "f_email": "Email",
+      "f_phone": "Téléphone",
+      "f_message": "Votre message",
+      "f_send": "Envoyer ma demande",
+      "f_sending": "Envoi en cours…",
+      "f_ok": "Merci ! Votre demande a bien été envoyée. Nous vous répondons sous 1h.",
+      "f_err": "Une erreur est survenue. Réessayez ou contactez-nous via WhatsApp."
     },
     "en": {
       "nav1": "Residence",
@@ -338,7 +348,17 @@
       "seo3p": "By booking directly with Miami Only One, you get a dedicated multilingual agent available before, during and after your stay. Zero platform commissions — save 15% to 20% compared to Airbnb or VRBO bookings. Minimum 2-night stay with sliding-scale rates from 7 nights.",
       "foot_p": "Private luxury residence facing the Atlantic Ocean. Direct booking, zero commission, with a dedicated agent.",
       "foot_nav": "Navigation",
-      "foot_contact": "Contact"
+      "foot_contact": "Contact",
+      "bm_form_h": "Get your personalized quote",
+      "ct_form_h": "Or write to us directly",
+      "f_name": "Full name",
+      "f_email": "Email",
+      "f_phone": "Phone",
+      "f_message": "Your message",
+      "f_send": "Send my request",
+      "f_sending": "Sending…",
+      "f_ok": "Thank you! Your request has been sent. We'll reply within 1 hour.",
+      "f_err": "Something went wrong. Please try again or contact us via WhatsApp."
     },
     "es": {
       "nav1": "Residencia",
@@ -490,7 +510,17 @@
       "seo3p": "Al reservar directamente con Miami Only One, obtienes un agente dedicado multilingüe disponible antes, durante y después de tu estancia. Sin comisiones de plataforma — ahorra entre 15% y 20% respecto a Airbnb o VRBO. Estancia mínima de 2 noches, tarifas degresivas desde 7 noches.",
       "foot_p": "Residencia privada de lujo frente al océano Atlántico. Reserva directa, sin comisión, con agente dedicado.",
       "foot_nav": "Navegación",
-      "foot_contact": "Contacto"
+      "foot_contact": "Contacto",
+      "bm_form_h": "Reciba su presupuesto personalizado",
+      "ct_form_h": "O escríbanos directamente",
+      "f_name": "Nombre completo",
+      "f_email": "Email",
+      "f_phone": "Teléfono",
+      "f_message": "Su mensaje",
+      "f_send": "Enviar mi solicitud",
+      "f_sending": "Enviando…",
+      "f_ok": "¡Gracias! Su solicitud ha sido enviada. Le responderemos en 1 hora.",
+      "f_err": "Ocurrió un error. Inténtelo de nuevo o contáctenos por WhatsApp."
     }
   }
 }
