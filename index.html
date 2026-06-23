@@ -1343,13 +1343,5 @@ window.addEventListener('DOMContentLoaded',boot);
 const _origSetLang=setLang;
 setLang=function(l){_origSetLang(l);if(document.getElementById('marquee').children.length)buildMarquee();};
 </script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",user=>{
-      if(!user){ window.netlifyIdentity.on("login",()=>{ document.location.href="/admin/"; }); }
-    });
-  }
-</script>
 </body>
 </html>

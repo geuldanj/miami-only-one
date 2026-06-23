@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: geuldanj/miami-only-one
   branch: main
 
 # Dossier où sont stockées les images téléversées depuis l'admin
