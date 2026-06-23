@@ -3,78 +3,538 @@ backend:
   repo: geuldanj/miami-only-one
   branch: main
 
-# Dossier où sont stockées les images téléversées depuis l'admin
 media_folder: "images"
 public_folder: "/images"
-
 locale: "fr"
 
 collections:
   - name: "site"
     label: "Site"
     files:
-      - name: "accueil"
+      - name: "contenu"
         label: "Contenu du site"
         file: "content.json"
         format: "json"
-        description: "Modifiez les textes d'accueil, la photo, le logo, les tarifs et les coordonnées."
         fields:
-          - label: "Photo & logo"
-            name: "media"
+          - label: "Réglages généraux"
+            name: "settings"
             widget: "object"
             fields:
-              - { label: "Photo d'accueil (hero)", name: "heroImage", widget: "image" }
-              - { label: "Logo", name: "logo", widget: "image" }
-
-          - label: "Tarifs (USD par nuit)"
-            name: "pricing"
-            widget: "object"
-            fields:
-              - { label: "Tarif mi-saison", name: "baseMid", widget: "number", value_type: "int", min: 0 }
-              - { label: "Tarif haute saison (déc.–fév.)", name: "baseWinter", widget: "number", value_type: "int", min: 0 }
-              - { label: "Tarif basse saison (juin–sept.)", name: "baseSummer", widget: "number", value_type: "int", min: 0 }
-              - { label: "Frais de ménage (obligatoire)", name: "cleaning", widget: "number", value_type: "int", min: 0 }
-              - { label: "Late check-out", name: "lateCheckout", widget: "number", value_type: "int", min: 0 }
-              - { label: "Transfert aéroport (A/R)", name: "transfer", widget: "number", value_type: "int", min: 0 }
-              - { label: "Remise dès 7 nuits (%)", name: "discount7Pct", widget: "number", value_type: "int", min: 0, max: 100 }
-              - { label: "Remise dès 14 nuits (%)", name: "discount14Pct", widget: "number", value_type: "int", min: 0, max: 100 }
-
-          - label: "Coordonnées"
-            name: "contact"
-            widget: "object"
-            fields:
-              - { label: "Téléphone (format +1XXXXXXXXXX)", name: "phone", widget: "string" }
-              - { label: "WhatsApp (chiffres uniquement, ex. 13056041000)", name: "whatsapp", widget: "string" }
-              - { label: "Email", name: "email", widget: "string" }
-
-          - label: "Texte d'accueil (hero)"
-            name: "hero"
+              - label: "Photo & logo"
+                name: "media"
+                widget: "object"
+                fields:
+                  - { label: "Photo d'accueil", name: "heroImage", widget: "image" }
+                  - { label: "Logo", name: "logo", widget: "image" }
+              - label: "Tarifs (USD/nuit)"
+                name: "pricing"
+                widget: "object"
+                fields:
+                  - { label: "Tarif mi-saison", name: "baseMid", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Haute saison (hiver)", name: "baseWinter", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Basse saison (été)", name: "baseSummer", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Frais de ménage", name: "cleaning", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Late check-out", name: "lateCheckout", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Transfert aéroport", name: "transfer", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Remise dès 7 nuits (%)", name: "discount7Pct", widget: "number", value_type: "int", min: 0 }
+                  - { label: "Remise dès 14 nuits (%)", name: "discount14Pct", widget: "number", value_type: "int", min: 0 }
+              - label: "Coordonnées"
+                name: "contact"
+                widget: "object"
+                fields:
+                  - { label: "Téléphone (+1...)", name: "phone", widget: "string" }
+                  - { label: "WhatsApp (chiffres)", name: "whatsapp", widget: "string" }
+                  - { label: "Email", name: "email", widget: "string" }
+              - { label: "Acompte (%)", name: "depositPct", widget: "number", value_type: "int", min: 0, max: 100 }
+          - label: "SEO (par langue)"
+            name: "seo"
             widget: "object"
             fields:
               - label: "Français"
                 name: "fr"
                 widget: "object"
                 fields:
-                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
-                  - { label: "Titre principal", name: "title", widget: "string" }
-                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
-                  - { label: "Bouton 1", name: "cta1", widget: "string" }
-                  - { label: "Bouton 2", name: "cta2", widget: "string" }
+                  - { label: "Titre (balise title)", name: "title", widget: "string" }
+                  - { label: "Meta description", name: "description", widget: "text" }
               - label: "English"
                 name: "en"
                 widget: "object"
                 fields:
-                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
-                  - { label: "Titre principal", name: "title", widget: "string" }
-                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
-                  - { label: "Bouton 1", name: "cta1", widget: "string" }
-                  - { label: "Bouton 2", name: "cta2", widget: "string" }
+                  - { label: "Titre (balise title)", name: "title", widget: "string" }
+                  - { label: "Meta description", name: "description", widget: "text" }
               - label: "Español"
                 name: "es"
                 widget: "object"
                 fields:
-                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
-                  - { label: "Titre principal", name: "title", widget: "string" }
-                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
-                  - { label: "Bouton 1", name: "cta1", widget: "string" }
-                  - { label: "Bouton 2", name: "cta2", widget: "string" }
+                  - { label: "Titre (balise title)", name: "title", widget: "string" }
+                  - { label: "Meta description", name: "description", widget: "text" }
+          - label: "Textes du site (par langue)"
+            name: "i18n"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Français"
+                name: "fr"
+                widget: "object"
+                collapsed: true
+                fields:
+              - { label: "[Navigation] nav1", name: "nav1", widget: "string", required: false, hint: "Résidence" }
+              - { label: "[Navigation] nav2", name: "nav2", widget: "string", required: false, hint: "Prestations" }
+              - { label: "[Navigation] nav3", name: "nav3", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Navigation] nav4", name: "nav4", widget: "string", required: false, hint: "FAQ" }
+              - { label: "[Navigation] nav5", name: "nav5", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Navigation] nav_cta", name: "nav_cta", widget: "string", required: false, hint: "Réserver" }
+              - { label: "[Accueil (hero)] he", name: "he", widget: "string", required: false, hint: "SOUTH BEACH, MIAMI — RÉSIDENCE PRIVÉE" }
+              - { label: "[Accueil (hero)] hh", name: "hh", widget: "string", required: false, hint: "Une adresse d'exception face à l'océan" }
+              - { label: "[Accueil (hero)] hs", name: "hs", widget: "text", required: false, hint: "Résidence privée de luxe au cœur du 1 Hotel South Beach — 600 pieds de plage, sanctuaire d…" }
+              - { label: "[Accueil (hero)] hcta1", name: "hcta1", widget: "string", required: false, hint: "Voir les Tarifs & Disponibilités" }
+              - { label: "[Accueil (hero)] hcta2", name: "hcta2", widget: "string", required: false, hint: "Contacter Votre Interlocuteur" }
+              - { label: "[Widget réservation] bk_in", name: "bk_in", widget: "string", required: false, hint: "Arrivée" }
+              - { label: "[Widget réservation] bk_out", name: "bk_out", widget: "string", required: false, hint: "Départ" }
+              - { label: "[Widget réservation] bk_adults", name: "bk_adults", widget: "string", required: false, hint: "Adultes" }
+              - { label: "[Widget réservation] bk_children", name: "bk_children", widget: "string", required: false, hint: "Enfants" }
+              - { label: "[Widget réservation] bk_cta", name: "bk_cta", widget: "string", required: false, hint: "Réserver Maintenant" }
+              - { label: "[Fenêtre réservation] bm_title", name: "bm_title", widget: "string", required: false, hint: "Détail de votre réservation" }
+              - { label: "[Fenêtre réservation] bm_nights", name: "bm_nights", widget: "string", required: false, hint: "Nuits" }
+              - { label: "[Fenêtre réservation] bm_total", name: "bm_total", widget: "string", required: false, hint: "Total estimé" }
+              - { label: "[Fenêtre réservation] bm_note", name: "bm_note", widget: "text", required: false, hint: "Le tarif définitif sera confirmé par votre interlocuteur dédié sous 1h." }
+              - { label: "[Fenêtre réservation] bm_confirm_wa", name: "bm_confirm_wa", widget: "string", required: false, hint: "Confirmer via WhatsApp" }
+              - { label: "[Fenêtre réservation] bm_confirm_email", name: "bm_confirm_email", widget: "string", required: false, hint: "Confirmer par Email" }
+              - { label: "[Fenêtre réservation] bm_err_dates", name: "bm_err_dates", widget: "string", required: false, hint: "Veuillez sélectionner vos dates d'arrivée et de départ." }
+              - { label: "[Fenêtre réservation] bm_err_min", name: "bm_err_min", widget: "string", required: false, hint: "Séjour minimum : 2 nuits." }
+              - { label: "[Widget réservation] bk_warn", name: "bk_warn", widget: "text", required: false, hint: "La résidence accueille un maximum de 6 personnes (adultes + enfants). Veuillez ajuster le …" }
+              - { label: "[Fenêtre réservation] bm_subtotal", name: "bm_subtotal", widget: "string", required: false, hint: "Hébergement" }
+              - { label: "[Fenêtre réservation] bm_extras_title", name: "bm_extras_title", widget: "string", required: false, hint: "Options & Services" }
+              - { label: "[Options réservation] opt_cleaning", name: "opt_cleaning", widget: "string", required: false, hint: "Frais de ménage (obligatoire)" }
+              - { label: "[Options réservation] opt_latecheckout", name: "opt_latecheckout", widget: "string", required: false, hint: "Late check-out 14h" }
+              - { label: "[Options réservation] opt_transfer", name: "opt_transfer", widget: "string", required: false, hint: "Transfert aéroport aller-retour" }
+              - { label: "[Options réservation] opt_subject", name: "opt_subject", widget: "string", required: false, hint: "sous réserve de disponibilité" }
+              - { label: "[Bandeau défilant] m1_l", name: "m1_l", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Bandeau défilant] m2", name: "m2", widget: "string", required: false, hint: "Front de mer" }
+              - { label: "[Bandeau défilant] m3", name: "m3", widget: "string", required: false, hint: "Interlocuteur dédié" }
+              - { label: "[Résidence] rt_e", name: "rt_e", widget: "string", required: false, hint: "La Résidence" }
+              - { label: "[Résidence] rt", name: "rt", widget: "string", required: false, hint: "Votre Sanctuaire Privé" }
+              - { label: "[Résidence] rd", name: "rd", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rd2", name: "rd2", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rb", name: "rb", widget: "string", required: false, hint: "3+1" }
+              - { label: "[Résidence] rb_l", name: "rb_l", widget: "string", required: false, hint: "Chambres + Bureau" }
+              - { label: "[Résidence] rba", name: "rba", widget: "string", required: false, hint: "3" }
+              - { label: "[Résidence] rba_l", name: "rba_l", widget: "string", required: false, hint: "Salles de bains" }
+              - { label: "[Résidence] rsq", name: "rsq", widget: "string", required: false, hint: "231 m²" }
+              - { label: "[Résidence] rsq_l", name: "rsq_l", widget: "string", required: false, hint: "Surface" }
+              - { label: "[Résidence] rfl", name: "rfl", widget: "string", required: false, hint: "Étage" }
+              - { label: "[Résidence] rra_l", name: "rra_l", widget: "string", required: false, hint: "Note exceptionnelle" }
+              - { label: "[Résidence] rra_s", name: "rra_s", widget: "string", required: false, hint: "Avis vérifiés des voyageurs" }
+              - { label: "[Bloc CTA] cta_mid_h", name: "cta_mid_h", widget: "string", required: false, hint: "Vérifiez les Disponibilités" }
+              - { label: "[Bloc CTA] cta_mid_p", name: "cta_mid_p", widget: "string", required: false, hint: "Tarifs en temps réel, réservation instantanée, interlocuteur dédié." }
+              - { label: "[Galerie] gal", name: "gal", widget: "string", required: false, hint: "Chaque pièce, une invitation au voyage." }
+              - { label: "[Prestations] at", name: "at", widget: "string", required: false, hint: "Prestations & Services" }
+              - { label: "[Prestations] as", name: "as", widget: "string", required: false, hint: "Accès exclusif aux installations du 1 Hotel South Beach" }
+              - { label: "[Prestations] a1", name: "a1", widget: "string", required: false, hint: "Plage Privée 600 Pieds" }
+              - { label: "[Prestations] a1d", name: "a1d", widget: "text", required: false, hint: "180 mètres de sable blanc fin le long de l'Atlantique. Chaises longues, parasols, cabanas …" }
+              - { label: "[Prestations] a2", name: "a2", widget: "string", required: false, hint: "4 Piscines dont Rooftop" }
+              - { label: "[Prestations] a2d", name: "a2d", widget: "text", required: false, hint: "Piscine principale vue océan, rooftop au 18ᵉ étage avec vue 360°, bassins thermaux, piscin…" }
+              - { label: "[Prestations] a3", name: "a3", widget: "string", required: false, hint: "Bamford Wellness Spa" }
+              - { label: "[Prestations] a3d", name: "a3d", widget: "text", required: false, hint: "Spa holistique de luxe — soins naturels, massages, thérapies durables. Consultations bien-…" }
+              - { label: "[Prestations] a4", name: "a4", widget: "string", required: false, hint: "Centre Anatomy Fitness" }
+              - { label: "[Prestations] a4d", name: "a4d", widget: "text", required: false, hint: "18 000 sq ft — équipements premium, coaching personnel, yoga, cours collectifs 24/7." }
+              - { label: "[Prestations] a5", name: "a5", widget: "string", required: false, hint: "7 Restaurants & Bars" }
+              - { label: "[Prestations] a5d", name: "a5d", widget: "text", required: false, hint: "AVIV (Chef Solomonov), Watr Rooftop 18ᵉ étage, Tala Beach, Plnthouse, Drift, Sandbox, Summ…" }
+              - { label: "[Prestations] a6", name: "a6", widget: "string", required: false, hint: "Conciergerie Sur-Mesure" }
+              - { label: "[Prestations] a6d", name: "a6d", widget: "text", required: false, hint: "Transferts aéroport, réservations restaurants, excursions privées, chef à domicile — votre…" }
+              - { label: "[Distinctions] d1", name: "d1", widget: "string", required: false, hint: "MICHELIN Key 2026" }
+              - { label: "[Distinctions] d2", name: "d2", widget: "string", required: false, hint: "World Travel Awards 2025" }
+              - { label: "[Distinctions] d3", name: "d3", widget: "string", required: false, hint: "Green Key 5/5" }
+              - { label: "[Distinctions] d4", name: "d4", widget: "string", required: false, hint: "Condé Nast Traveler" }
+              - { label: "[Expérience] et_e", name: "et_e", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Expérience] et", name: "et", widget: "string", required: false, hint: "L'Expérience Miami Only One" }
+              - { label: "[Expérience] es2", name: "es2", widget: "text", required: false, hint: "Bien plus qu'une location — un séjour sur-mesure avec interlocuteur dédié" }
+              - { label: "[Expérience] ed", name: "ed", widget: "string", required: false, hint: "Miami Only One" }
+              - { label: "[Expérience] eo", name: "eo", widget: "string", required: false, hint: "Plateformes classiques" }
+              - { label: "[Expérience] er1", name: "er1", widget: "string", required: false, hint: "Votre interlocuteur" }
+              - { label: "[Expérience] ev1d", name: "ev1d", widget: "string", required: false, hint: "Dédié & francophone" }
+              - { label: "[Expérience] ev1o", name: "ev1o", widget: "string", required: false, hint: "Support automatisé" }
+              - { label: "[Expérience] er2", name: "er2", widget: "string", required: false, hint: "Expérience" }
+              - { label: "[Expérience] ev2d", name: "ev2d", widget: "string", required: false, hint: "Sur-mesure, personnalisée" }
+              - { label: "[Expérience] ev2o", name: "ev2o", widget: "string", required: false, hint: "Standardisée" }
+              - { label: "[Expérience] er3", name: "er3", widget: "string", required: false, hint: "Prestations resort" }
+              - { label: "[Expérience] ev3d", name: "ev3d", widget: "string", required: false, hint: "Accès complet inclus" }
+              - { label: "[Expérience] ev3o", name: "ev3o", widget: "string", required: false, hint: "En supplément" }
+              - { label: "[Expérience] er4", name: "er4", widget: "string", required: false, hint: "Flexibilité" }
+              - { label: "[Expérience] ev4d", name: "ev4d", widget: "string", required: false, hint: "Arrangement direct" }
+              - { label: "[Expérience] ev4o", name: "ev4o", widget: "string", required: false, hint: "Conditions rigides" }
+              - { label: "[Expérience] er5", name: "er5", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Expérience] ev5d", name: "ev5d", widget: "string", required: false, hint: "0%" }
+              - { label: "[Expérience] ev5o", name: "ev5o", widget: "string", required: false, hint: "15-20%" }
+              - { label: "[Chambres] room1", name: "room1", widget: "string", required: false, hint: "Suite Parentale" }
+              - { label: "[Chambres] room1d", name: "room1d", widget: "text", required: false, hint: "Lit King Size, salle de bains en marbre et pierre naturelle, literie haute couture, Smart …" }
+              - { label: "[Chambres] room2", name: "room2", widget: "string", required: false, hint: "Suite Junior" }
+              - { label: "[Chambres] room2d", name: "room2d", widget: "text", required: false, hint: "Lit King Size, salle de bains privative, espace intimiste pour vos hôtes." }
+              - { label: "[Chambres] room3", name: "room3", widget: "string", required: false, hint: "Chambre Invités" }
+              - { label: "[Chambres] room3d", name: "room3d", widget: "text", required: false, hint: "Lit Queen, finitions raffinées, Smart TV, accès direct à la salle de bains." }
+              - { label: "[Chambres] room4", name: "room4", widget: "string", required: false, hint: "Bureau & Salle à Manger Privée" }
+              - { label: "[Chambres] room4d", name: "room4d", widget: "text", required: false, hint: "Espace rare : table dressée pour 8 convives. Idéal pour dîners privés ou expériences chef." }
+              - { label: "[Partage] w_share", name: "w_share", widget: "string", required: false, hint: "Partager" }
+              - { label: "[Alerte prix] pa_title", name: "pa_title", widget: "string", required: false, hint: "Alerte Prix" }
+              - { label: "[Alerte prix] pa_desc", name: "pa_desc", widget: "string", required: false, hint: "Recevez une notification dès que les tarifs baissent sur vos dates." }
+              - { label: "[Alerte prix] pa_btn", name: "pa_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte annulation] ca_title", name: "ca_title", widget: "string", required: false, hint: "Alerte Annulation" }
+              - { label: "[Alerte annulation] ca_desc", name: "ca_desc", widget: "text", required: false, hint: "Vos dates ne sont pas disponibles ? Soyez alerté en priorité si une annulation libère le c…" }
+              - { label: "[Alerte annulation] ca_btn", name: "ca_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte] alert_ok", name: "alert_ok", widget: "string", required: false, hint: "Alerte activée — nous vous préviendrons." }
+              - { label: "[Quartier] qt_h", name: "qt_h", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Quartier] qt_s", name: "qt_s", widget: "text", required: false, hint: "South Beach, l'une des adresses les plus convoitées au monde — et votre résidence en est l…" }
+              - { label: "[Quartier] qt1", name: "qt1", widget: "string", required: false, hint: "Plage & Boardwalk" }
+              - { label: "[Quartier] qt1d", name: "qt1d", widget: "text", required: false, hint: "Sortez de l'ascenseur, vous y êtes. 600 pieds de sable blanc, eaux turquoise de l'Atlantiq…" }
+              - { label: "[Quartier] qt1t", name: "qt1t", widget: "string", required: false, hint: "Accès direct — 0 min" }
+              - { label: "[Quartier] qt2", name: "qt2", widget: "string", required: false, hint: "Lincoln Road Mall" }
+              - { label: "[Quartier] qt2d", name: "qt2d", widget: "text", required: false, hint: "Le boulevard piétonnier iconique de South Beach. Boutiques de créateurs, galeries d'art, t…" }
+              - { label: "[Quartier] qt2t", name: "qt2t", widget: "string", required: false, hint: "5 min à pied" }
+              - { label: "[Quartier] qt3", name: "qt3", widget: "string", required: false, hint: "Art Deco Historic District" }
+              - { label: "[Quartier] qt3d", name: "qt3d", widget: "text", required: false, hint: "Plus de 800 bâtiments Art Déco des années 1920-1940, classés au patrimoine national. Ocean…" }
+              - { label: "[Quartier] qt3t", name: "qt3t", widget: "string", required: false, hint: "10 min à pied" }
+              - { label: "[Quartier] qt4", name: "qt4", widget: "string", required: false, hint: "Sunset Harbour" }
+              - { label: "[Quartier] qt4d", name: "qt4d", widget: "text", required: false, hint: "Le quartier préféré des locaux. Restaurants farm-to-table, cafés artisanaux, boutiques ind…" }
+              - { label: "[Quartier] qt4t", name: "qt4t", widget: "string", required: false, hint: "8 min en voiture" }
+              - { label: "[Quartier] qt5", name: "qt5", widget: "string", required: false, hint: "Wynwood & Design District" }
+              - { label: "[Quartier] qt5d", name: "qt5d", widget: "text", required: false, hint: "L'épicentre de l'art contemporain à Miami. Wynwood Walls, galeries, street art, rooftop ba…" }
+              - { label: "[Quartier] qt5t", name: "qt5t", widget: "string", required: false, hint: "15 min en voiture" }
+              - { label: "[Quartier] qt6", name: "qt6", widget: "string", required: false, hint: "Everglades & Keys" }
+              - { label: "[Quartier] qt6d", name: "qt6d", widget: "text", required: false, hint: "Aventure à portée de main. Airboat dans les Everglades, plongée à Key Largo, coucher de so…" }
+              - { label: "[Quartier] qt6t", name: "qt6t", widget: "string", required: false, hint: "Excursions à la journée" }
+              - { label: "[FAQ] ft", name: "ft", widget: "string", required: false, hint: "Questions Fréquentes" }
+              - { label: "[FAQ] fq1", name: "fq1", widget: "string", required: false, hint: "Quelle est la durée minimale de séjour ?" }
+              - { label: "[FAQ] fa1", name: "fa1", widget: "text", required: false, hint: "Minimum 2 nuits. Tarifs dégressifs à partir de 7 nuits. Contactez votre interlocuteur dédi…" }
+              - { label: "[FAQ] fq2", name: "fq2", widget: "string", required: false, hint: "Puis-je amener mon animal de compagnie ?" }
+              - { label: "[FAQ] fa2", name: "fa2", widget: "string", required: false, hint: "Oui — le 1 Hotel South Beach est pet-friendly. Supplément : $50/nuit." }
+              - { label: "[FAQ] fq3", name: "fq3", widget: "string", required: false, hint: "Le petit-déjeuner est-il inclus ?" }
+              - { label: "[FAQ] fa3", name: "fa3", widget: "text", required: false, hint: "Packages disponibles avec buffet AVIV (cuisine israélienne étoilée) : $45/pers./jour." }
+              - { label: "[FAQ] fq4", name: "fq4", widget: "string", required: false, hint: "Accès piscines et plage inclus ?" }
+              - { label: "[FAQ] fa4", name: "fa4", widget: "text", required: false, hint: "Oui, accès illimité aux 4 piscines (dont rooftop 18ᵉ étage), plage privée 600 pieds, Bamfo…" }
+              - { label: "[FAQ] fq5", name: "fq5", widget: "string", required: false, hint: "Événements privés possibles ?" }
+              - { label: "[FAQ] fa5", name: "fa5", widget: "text", required: false, hint: "Oui — mariages, séminaires, fêtes privées. Votre interlocuteur dédié coordonne l'ensemble." }
+              - { label: "[Contact] ct", name: "ct", widget: "string", required: false, hint: "Planifiez Votre Séjour" }
+              - { label: "[Contact] ctsub", name: "ctsub", widget: "string", required: false, hint: "Votre interlocuteur dédié répond en moins d'1 heure" }
+              - { label: "[Contact] ct1", name: "ct1", widget: "string", required: false, hint: "Appeler" }
+              - { label: "[Contact] ct2", name: "ct2", widget: "string", required: false, hint: "WhatsApp" }
+              - { label: "[Contact] ct3", name: "ct3", widget: "string", required: false, hint: "Email" }
+              - { label: "[SEO (texte bas de page)] seo1h", name: "seo1h", widget: "string", required: false, hint: "Location de luxe au 1 Hotel South Beach — Résidence privée Miami" }
+              - { label: "[SEO (texte bas de page)] seo1p1", name: "seo1p1", widget: "text", required: false, hint: "Découvrez Miami Only One : une résidence privée d'exception de 3 chambres avec vue directe…" }
+              - { label: "[SEO (texte bas de page)] seo1p2", name: "seo1p2", widget: "text", required: false, hint: "Réservation directe avec un interlocuteur dédié francophone, sans commission de plateforme…" }
+              - { label: "[SEO (texte bas de page)] seo2h", name: "seo2h", widget: "text", required: false, hint: "Vacances de luxe à South Beach Miami — Prestations hôtelières cinq étoiles" }
+              - { label: "[SEO (texte bas de page)] seo2p", name: "seo2p", widget: "text", required: false, hint: "En séjournant dans notre résidence privée, vous bénéficiez de l'ensemble des services du 1…" }
+              - { label: "[SEO (texte bas de page)] seo3h", name: "seo3h", widget: "string", required: false, hint: "Pourquoi réserver en direct votre résidence de luxe à Miami Beach" }
+              - { label: "[SEO (texte bas de page)] seo3p", name: "seo3p", widget: "text", required: false, hint: "En réservant directement avec Miami Only One, vous bénéficiez d'un interlocuteur dédié fra…" }
+              - { label: "[Pied de page] foot_p", name: "foot_p", widget: "text", required: false, hint: "Résidence privée de luxe face à l'océan Atlantique. Réservation directe, sans commission, …" }
+              - { label: "[Pied de page] foot_nav", name: "foot_nav", widget: "string", required: false, hint: "Navigation" }
+              - { label: "[Pied de page] foot_contact", name: "foot_contact", widget: "string", required: false, hint: "Contact" }
+              - label: "English"
+                name: "en"
+                widget: "object"
+                collapsed: true
+                fields:
+              - { label: "[Navigation] nav1", name: "nav1", widget: "string", required: false, hint: "Résidence" }
+              - { label: "[Navigation] nav2", name: "nav2", widget: "string", required: false, hint: "Prestations" }
+              - { label: "[Navigation] nav3", name: "nav3", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Navigation] nav4", name: "nav4", widget: "string", required: false, hint: "FAQ" }
+              - { label: "[Navigation] nav5", name: "nav5", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Navigation] nav_cta", name: "nav_cta", widget: "string", required: false, hint: "Réserver" }
+              - { label: "[Accueil (hero)] he", name: "he", widget: "string", required: false, hint: "SOUTH BEACH, MIAMI — RÉSIDENCE PRIVÉE" }
+              - { label: "[Accueil (hero)] hh", name: "hh", widget: "string", required: false, hint: "Une adresse d'exception face à l'océan" }
+              - { label: "[Accueil (hero)] hs", name: "hs", widget: "text", required: false, hint: "Résidence privée de luxe au cœur du 1 Hotel South Beach — 600 pieds de plage, sanctuaire d…" }
+              - { label: "[Accueil (hero)] hcta1", name: "hcta1", widget: "string", required: false, hint: "Voir les Tarifs & Disponibilités" }
+              - { label: "[Accueil (hero)] hcta2", name: "hcta2", widget: "string", required: false, hint: "Contacter Votre Interlocuteur" }
+              - { label: "[Widget réservation] bk_in", name: "bk_in", widget: "string", required: false, hint: "Arrivée" }
+              - { label: "[Widget réservation] bk_out", name: "bk_out", widget: "string", required: false, hint: "Départ" }
+              - { label: "[Widget réservation] bk_adults", name: "bk_adults", widget: "string", required: false, hint: "Adultes" }
+              - { label: "[Widget réservation] bk_children", name: "bk_children", widget: "string", required: false, hint: "Enfants" }
+              - { label: "[Widget réservation] bk_cta", name: "bk_cta", widget: "string", required: false, hint: "Réserver Maintenant" }
+              - { label: "[Fenêtre réservation] bm_title", name: "bm_title", widget: "string", required: false, hint: "Détail de votre réservation" }
+              - { label: "[Fenêtre réservation] bm_nights", name: "bm_nights", widget: "string", required: false, hint: "Nuits" }
+              - { label: "[Fenêtre réservation] bm_total", name: "bm_total", widget: "string", required: false, hint: "Total estimé" }
+              - { label: "[Fenêtre réservation] bm_note", name: "bm_note", widget: "text", required: false, hint: "Le tarif définitif sera confirmé par votre interlocuteur dédié sous 1h." }
+              - { label: "[Fenêtre réservation] bm_confirm_wa", name: "bm_confirm_wa", widget: "string", required: false, hint: "Confirmer via WhatsApp" }
+              - { label: "[Fenêtre réservation] bm_confirm_email", name: "bm_confirm_email", widget: "string", required: false, hint: "Confirmer par Email" }
+              - { label: "[Fenêtre réservation] bm_err_dates", name: "bm_err_dates", widget: "string", required: false, hint: "Veuillez sélectionner vos dates d'arrivée et de départ." }
+              - { label: "[Fenêtre réservation] bm_err_min", name: "bm_err_min", widget: "string", required: false, hint: "Séjour minimum : 2 nuits." }
+              - { label: "[Widget réservation] bk_warn", name: "bk_warn", widget: "text", required: false, hint: "La résidence accueille un maximum de 6 personnes (adultes + enfants). Veuillez ajuster le …" }
+              - { label: "[Fenêtre réservation] bm_subtotal", name: "bm_subtotal", widget: "string", required: false, hint: "Hébergement" }
+              - { label: "[Fenêtre réservation] bm_extras_title", name: "bm_extras_title", widget: "string", required: false, hint: "Options & Services" }
+              - { label: "[Options réservation] opt_cleaning", name: "opt_cleaning", widget: "string", required: false, hint: "Frais de ménage (obligatoire)" }
+              - { label: "[Options réservation] opt_latecheckout", name: "opt_latecheckout", widget: "string", required: false, hint: "Late check-out 14h" }
+              - { label: "[Options réservation] opt_transfer", name: "opt_transfer", widget: "string", required: false, hint: "Transfert aéroport aller-retour" }
+              - { label: "[Options réservation] opt_subject", name: "opt_subject", widget: "string", required: false, hint: "sous réserve de disponibilité" }
+              - { label: "[Bandeau défilant] m1_l", name: "m1_l", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Bandeau défilant] m2", name: "m2", widget: "string", required: false, hint: "Front de mer" }
+              - { label: "[Bandeau défilant] m3", name: "m3", widget: "string", required: false, hint: "Interlocuteur dédié" }
+              - { label: "[Résidence] rt_e", name: "rt_e", widget: "string", required: false, hint: "La Résidence" }
+              - { label: "[Résidence] rt", name: "rt", widget: "string", required: false, hint: "Votre Sanctuaire Privé" }
+              - { label: "[Résidence] rd", name: "rd", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rd2", name: "rd2", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rb", name: "rb", widget: "string", required: false, hint: "3+1" }
+              - { label: "[Résidence] rb_l", name: "rb_l", widget: "string", required: false, hint: "Chambres + Bureau" }
+              - { label: "[Résidence] rba", name: "rba", widget: "string", required: false, hint: "3" }
+              - { label: "[Résidence] rba_l", name: "rba_l", widget: "string", required: false, hint: "Salles de bains" }
+              - { label: "[Résidence] rsq", name: "rsq", widget: "string", required: false, hint: "231 m²" }
+              - { label: "[Résidence] rsq_l", name: "rsq_l", widget: "string", required: false, hint: "Surface" }
+              - { label: "[Résidence] rfl", name: "rfl", widget: "string", required: false, hint: "Étage" }
+              - { label: "[Résidence] rra_l", name: "rra_l", widget: "string", required: false, hint: "Note exceptionnelle" }
+              - { label: "[Résidence] rra_s", name: "rra_s", widget: "string", required: false, hint: "Avis vérifiés des voyageurs" }
+              - { label: "[Bloc CTA] cta_mid_h", name: "cta_mid_h", widget: "string", required: false, hint: "Vérifiez les Disponibilités" }
+              - { label: "[Bloc CTA] cta_mid_p", name: "cta_mid_p", widget: "string", required: false, hint: "Tarifs en temps réel, réservation instantanée, interlocuteur dédié." }
+              - { label: "[Galerie] gal", name: "gal", widget: "string", required: false, hint: "Chaque pièce, une invitation au voyage." }
+              - { label: "[Prestations] at", name: "at", widget: "string", required: false, hint: "Prestations & Services" }
+              - { label: "[Prestations] as", name: "as", widget: "string", required: false, hint: "Accès exclusif aux installations du 1 Hotel South Beach" }
+              - { label: "[Prestations] a1", name: "a1", widget: "string", required: false, hint: "Plage Privée 600 Pieds" }
+              - { label: "[Prestations] a1d", name: "a1d", widget: "text", required: false, hint: "180 mètres de sable blanc fin le long de l'Atlantique. Chaises longues, parasols, cabanas …" }
+              - { label: "[Prestations] a2", name: "a2", widget: "string", required: false, hint: "4 Piscines dont Rooftop" }
+              - { label: "[Prestations] a2d", name: "a2d", widget: "text", required: false, hint: "Piscine principale vue océan, rooftop au 18ᵉ étage avec vue 360°, bassins thermaux, piscin…" }
+              - { label: "[Prestations] a3", name: "a3", widget: "string", required: false, hint: "Bamford Wellness Spa" }
+              - { label: "[Prestations] a3d", name: "a3d", widget: "text", required: false, hint: "Spa holistique de luxe — soins naturels, massages, thérapies durables. Consultations bien-…" }
+              - { label: "[Prestations] a4", name: "a4", widget: "string", required: false, hint: "Centre Anatomy Fitness" }
+              - { label: "[Prestations] a4d", name: "a4d", widget: "text", required: false, hint: "18 000 sq ft — équipements premium, coaching personnel, yoga, cours collectifs 24/7." }
+              - { label: "[Prestations] a5", name: "a5", widget: "string", required: false, hint: "7 Restaurants & Bars" }
+              - { label: "[Prestations] a5d", name: "a5d", widget: "text", required: false, hint: "AVIV (Chef Solomonov), Watr Rooftop 18ᵉ étage, Tala Beach, Plnthouse, Drift, Sandbox, Summ…" }
+              - { label: "[Prestations] a6", name: "a6", widget: "string", required: false, hint: "Conciergerie Sur-Mesure" }
+              - { label: "[Prestations] a6d", name: "a6d", widget: "text", required: false, hint: "Transferts aéroport, réservations restaurants, excursions privées, chef à domicile — votre…" }
+              - { label: "[Distinctions] d1", name: "d1", widget: "string", required: false, hint: "MICHELIN Key 2026" }
+              - { label: "[Distinctions] d2", name: "d2", widget: "string", required: false, hint: "World Travel Awards 2025" }
+              - { label: "[Distinctions] d3", name: "d3", widget: "string", required: false, hint: "Green Key 5/5" }
+              - { label: "[Distinctions] d4", name: "d4", widget: "string", required: false, hint: "Condé Nast Traveler" }
+              - { label: "[Expérience] et_e", name: "et_e", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Expérience] et", name: "et", widget: "string", required: false, hint: "L'Expérience Miami Only One" }
+              - { label: "[Expérience] es2", name: "es2", widget: "text", required: false, hint: "Bien plus qu'une location — un séjour sur-mesure avec interlocuteur dédié" }
+              - { label: "[Expérience] ed", name: "ed", widget: "string", required: false, hint: "Miami Only One" }
+              - { label: "[Expérience] eo", name: "eo", widget: "string", required: false, hint: "Plateformes classiques" }
+              - { label: "[Expérience] er1", name: "er1", widget: "string", required: false, hint: "Votre interlocuteur" }
+              - { label: "[Expérience] ev1d", name: "ev1d", widget: "string", required: false, hint: "Dédié & francophone" }
+              - { label: "[Expérience] ev1o", name: "ev1o", widget: "string", required: false, hint: "Support automatisé" }
+              - { label: "[Expérience] er2", name: "er2", widget: "string", required: false, hint: "Expérience" }
+              - { label: "[Expérience] ev2d", name: "ev2d", widget: "string", required: false, hint: "Sur-mesure, personnalisée" }
+              - { label: "[Expérience] ev2o", name: "ev2o", widget: "string", required: false, hint: "Standardisée" }
+              - { label: "[Expérience] er3", name: "er3", widget: "string", required: false, hint: "Prestations resort" }
+              - { label: "[Expérience] ev3d", name: "ev3d", widget: "string", required: false, hint: "Accès complet inclus" }
+              - { label: "[Expérience] ev3o", name: "ev3o", widget: "string", required: false, hint: "En supplément" }
+              - { label: "[Expérience] er4", name: "er4", widget: "string", required: false, hint: "Flexibilité" }
+              - { label: "[Expérience] ev4d", name: "ev4d", widget: "string", required: false, hint: "Arrangement direct" }
+              - { label: "[Expérience] ev4o", name: "ev4o", widget: "string", required: false, hint: "Conditions rigides" }
+              - { label: "[Expérience] er5", name: "er5", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Expérience] ev5d", name: "ev5d", widget: "string", required: false, hint: "0%" }
+              - { label: "[Expérience] ev5o", name: "ev5o", widget: "string", required: false, hint: "15-20%" }
+              - { label: "[Chambres] room1", name: "room1", widget: "string", required: false, hint: "Suite Parentale" }
+              - { label: "[Chambres] room1d", name: "room1d", widget: "text", required: false, hint: "Lit King Size, salle de bains en marbre et pierre naturelle, literie haute couture, Smart …" }
+              - { label: "[Chambres] room2", name: "room2", widget: "string", required: false, hint: "Suite Junior" }
+              - { label: "[Chambres] room2d", name: "room2d", widget: "text", required: false, hint: "Lit King Size, salle de bains privative, espace intimiste pour vos hôtes." }
+              - { label: "[Chambres] room3", name: "room3", widget: "string", required: false, hint: "Chambre Invités" }
+              - { label: "[Chambres] room3d", name: "room3d", widget: "text", required: false, hint: "Lit Queen, finitions raffinées, Smart TV, accès direct à la salle de bains." }
+              - { label: "[Chambres] room4", name: "room4", widget: "string", required: false, hint: "Bureau & Salle à Manger Privée" }
+              - { label: "[Chambres] room4d", name: "room4d", widget: "text", required: false, hint: "Espace rare : table dressée pour 8 convives. Idéal pour dîners privés ou expériences chef." }
+              - { label: "[Partage] w_share", name: "w_share", widget: "string", required: false, hint: "Partager" }
+              - { label: "[Alerte prix] pa_title", name: "pa_title", widget: "string", required: false, hint: "Alerte Prix" }
+              - { label: "[Alerte prix] pa_desc", name: "pa_desc", widget: "string", required: false, hint: "Recevez une notification dès que les tarifs baissent sur vos dates." }
+              - { label: "[Alerte prix] pa_btn", name: "pa_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte annulation] ca_title", name: "ca_title", widget: "string", required: false, hint: "Alerte Annulation" }
+              - { label: "[Alerte annulation] ca_desc", name: "ca_desc", widget: "text", required: false, hint: "Vos dates ne sont pas disponibles ? Soyez alerté en priorité si une annulation libère le c…" }
+              - { label: "[Alerte annulation] ca_btn", name: "ca_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte] alert_ok", name: "alert_ok", widget: "string", required: false, hint: "Alerte activée — nous vous préviendrons." }
+              - { label: "[Quartier] qt_h", name: "qt_h", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Quartier] qt_s", name: "qt_s", widget: "text", required: false, hint: "South Beach, l'une des adresses les plus convoitées au monde — et votre résidence en est l…" }
+              - { label: "[Quartier] qt1", name: "qt1", widget: "string", required: false, hint: "Plage & Boardwalk" }
+              - { label: "[Quartier] qt1d", name: "qt1d", widget: "text", required: false, hint: "Sortez de l'ascenseur, vous y êtes. 600 pieds de sable blanc, eaux turquoise de l'Atlantiq…" }
+              - { label: "[Quartier] qt1t", name: "qt1t", widget: "string", required: false, hint: "Accès direct — 0 min" }
+              - { label: "[Quartier] qt2", name: "qt2", widget: "string", required: false, hint: "Lincoln Road Mall" }
+              - { label: "[Quartier] qt2d", name: "qt2d", widget: "text", required: false, hint: "Le boulevard piétonnier iconique de South Beach. Boutiques de créateurs, galeries d'art, t…" }
+              - { label: "[Quartier] qt2t", name: "qt2t", widget: "string", required: false, hint: "5 min à pied" }
+              - { label: "[Quartier] qt3", name: "qt3", widget: "string", required: false, hint: "Art Deco Historic District" }
+              - { label: "[Quartier] qt3d", name: "qt3d", widget: "text", required: false, hint: "Plus de 800 bâtiments Art Déco des années 1920-1940, classés au patrimoine national. Ocean…" }
+              - { label: "[Quartier] qt3t", name: "qt3t", widget: "string", required: false, hint: "10 min à pied" }
+              - { label: "[Quartier] qt4", name: "qt4", widget: "string", required: false, hint: "Sunset Harbour" }
+              - { label: "[Quartier] qt4d", name: "qt4d", widget: "text", required: false, hint: "Le quartier préféré des locaux. Restaurants farm-to-table, cafés artisanaux, boutiques ind…" }
+              - { label: "[Quartier] qt4t", name: "qt4t", widget: "string", required: false, hint: "8 min en voiture" }
+              - { label: "[Quartier] qt5", name: "qt5", widget: "string", required: false, hint: "Wynwood & Design District" }
+              - { label: "[Quartier] qt5d", name: "qt5d", widget: "text", required: false, hint: "L'épicentre de l'art contemporain à Miami. Wynwood Walls, galeries, street art, rooftop ba…" }
+              - { label: "[Quartier] qt5t", name: "qt5t", widget: "string", required: false, hint: "15 min en voiture" }
+              - { label: "[Quartier] qt6", name: "qt6", widget: "string", required: false, hint: "Everglades & Keys" }
+              - { label: "[Quartier] qt6d", name: "qt6d", widget: "text", required: false, hint: "Aventure à portée de main. Airboat dans les Everglades, plongée à Key Largo, coucher de so…" }
+              - { label: "[Quartier] qt6t", name: "qt6t", widget: "string", required: false, hint: "Excursions à la journée" }
+              - { label: "[FAQ] ft", name: "ft", widget: "string", required: false, hint: "Questions Fréquentes" }
+              - { label: "[FAQ] fq1", name: "fq1", widget: "string", required: false, hint: "Quelle est la durée minimale de séjour ?" }
+              - { label: "[FAQ] fa1", name: "fa1", widget: "text", required: false, hint: "Minimum 2 nuits. Tarifs dégressifs à partir de 7 nuits. Contactez votre interlocuteur dédi…" }
+              - { label: "[FAQ] fq2", name: "fq2", widget: "string", required: false, hint: "Puis-je amener mon animal de compagnie ?" }
+              - { label: "[FAQ] fa2", name: "fa2", widget: "string", required: false, hint: "Oui — le 1 Hotel South Beach est pet-friendly. Supplément : $50/nuit." }
+              - { label: "[FAQ] fq3", name: "fq3", widget: "string", required: false, hint: "Le petit-déjeuner est-il inclus ?" }
+              - { label: "[FAQ] fa3", name: "fa3", widget: "text", required: false, hint: "Packages disponibles avec buffet AVIV (cuisine israélienne étoilée) : $45/pers./jour." }
+              - { label: "[FAQ] fq4", name: "fq4", widget: "string", required: false, hint: "Accès piscines et plage inclus ?" }
+              - { label: "[FAQ] fa4", name: "fa4", widget: "text", required: false, hint: "Oui, accès illimité aux 4 piscines (dont rooftop 18ᵉ étage), plage privée 600 pieds, Bamfo…" }
+              - { label: "[FAQ] fq5", name: "fq5", widget: "string", required: false, hint: "Événements privés possibles ?" }
+              - { label: "[FAQ] fa5", name: "fa5", widget: "text", required: false, hint: "Oui — mariages, séminaires, fêtes privées. Votre interlocuteur dédié coordonne l'ensemble." }
+              - { label: "[Contact] ct", name: "ct", widget: "string", required: false, hint: "Planifiez Votre Séjour" }
+              - { label: "[Contact] ctsub", name: "ctsub", widget: "string", required: false, hint: "Votre interlocuteur dédié répond en moins d'1 heure" }
+              - { label: "[Contact] ct1", name: "ct1", widget: "string", required: false, hint: "Appeler" }
+              - { label: "[Contact] ct2", name: "ct2", widget: "string", required: false, hint: "WhatsApp" }
+              - { label: "[Contact] ct3", name: "ct3", widget: "string", required: false, hint: "Email" }
+              - { label: "[SEO (texte bas de page)] seo1h", name: "seo1h", widget: "string", required: false, hint: "Location de luxe au 1 Hotel South Beach — Résidence privée Miami" }
+              - { label: "[SEO (texte bas de page)] seo1p1", name: "seo1p1", widget: "text", required: false, hint: "Découvrez Miami Only One : une résidence privée d'exception de 3 chambres avec vue directe…" }
+              - { label: "[SEO (texte bas de page)] seo1p2", name: "seo1p2", widget: "text", required: false, hint: "Réservation directe avec un interlocuteur dédié francophone, sans commission de plateforme…" }
+              - { label: "[SEO (texte bas de page)] seo2h", name: "seo2h", widget: "text", required: false, hint: "Vacances de luxe à South Beach Miami — Prestations hôtelières cinq étoiles" }
+              - { label: "[SEO (texte bas de page)] seo2p", name: "seo2p", widget: "text", required: false, hint: "En séjournant dans notre résidence privée, vous bénéficiez de l'ensemble des services du 1…" }
+              - { label: "[SEO (texte bas de page)] seo3h", name: "seo3h", widget: "string", required: false, hint: "Pourquoi réserver en direct votre résidence de luxe à Miami Beach" }
+              - { label: "[SEO (texte bas de page)] seo3p", name: "seo3p", widget: "text", required: false, hint: "En réservant directement avec Miami Only One, vous bénéficiez d'un interlocuteur dédié fra…" }
+              - { label: "[Pied de page] foot_p", name: "foot_p", widget: "text", required: false, hint: "Résidence privée de luxe face à l'océan Atlantique. Réservation directe, sans commission, …" }
+              - { label: "[Pied de page] foot_nav", name: "foot_nav", widget: "string", required: false, hint: "Navigation" }
+              - { label: "[Pied de page] foot_contact", name: "foot_contact", widget: "string", required: false, hint: "Contact" }
+              - label: "Español"
+                name: "es"
+                widget: "object"
+                collapsed: true
+                fields:
+              - { label: "[Navigation] nav1", name: "nav1", widget: "string", required: false, hint: "Résidence" }
+              - { label: "[Navigation] nav2", name: "nav2", widget: "string", required: false, hint: "Prestations" }
+              - { label: "[Navigation] nav3", name: "nav3", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Navigation] nav4", name: "nav4", widget: "string", required: false, hint: "FAQ" }
+              - { label: "[Navigation] nav5", name: "nav5", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Navigation] nav_cta", name: "nav_cta", widget: "string", required: false, hint: "Réserver" }
+              - { label: "[Accueil (hero)] he", name: "he", widget: "string", required: false, hint: "SOUTH BEACH, MIAMI — RÉSIDENCE PRIVÉE" }
+              - { label: "[Accueil (hero)] hh", name: "hh", widget: "string", required: false, hint: "Une adresse d'exception face à l'océan" }
+              - { label: "[Accueil (hero)] hs", name: "hs", widget: "text", required: false, hint: "Résidence privée de luxe au cœur du 1 Hotel South Beach — 600 pieds de plage, sanctuaire d…" }
+              - { label: "[Accueil (hero)] hcta1", name: "hcta1", widget: "string", required: false, hint: "Voir les Tarifs & Disponibilités" }
+              - { label: "[Accueil (hero)] hcta2", name: "hcta2", widget: "string", required: false, hint: "Contacter Votre Interlocuteur" }
+              - { label: "[Widget réservation] bk_in", name: "bk_in", widget: "string", required: false, hint: "Arrivée" }
+              - { label: "[Widget réservation] bk_out", name: "bk_out", widget: "string", required: false, hint: "Départ" }
+              - { label: "[Widget réservation] bk_adults", name: "bk_adults", widget: "string", required: false, hint: "Adultes" }
+              - { label: "[Widget réservation] bk_children", name: "bk_children", widget: "string", required: false, hint: "Enfants" }
+              - { label: "[Widget réservation] bk_cta", name: "bk_cta", widget: "string", required: false, hint: "Réserver Maintenant" }
+              - { label: "[Fenêtre réservation] bm_title", name: "bm_title", widget: "string", required: false, hint: "Détail de votre réservation" }
+              - { label: "[Fenêtre réservation] bm_nights", name: "bm_nights", widget: "string", required: false, hint: "Nuits" }
+              - { label: "[Fenêtre réservation] bm_total", name: "bm_total", widget: "string", required: false, hint: "Total estimé" }
+              - { label: "[Fenêtre réservation] bm_note", name: "bm_note", widget: "text", required: false, hint: "Le tarif définitif sera confirmé par votre interlocuteur dédié sous 1h." }
+              - { label: "[Fenêtre réservation] bm_confirm_wa", name: "bm_confirm_wa", widget: "string", required: false, hint: "Confirmer via WhatsApp" }
+              - { label: "[Fenêtre réservation] bm_confirm_email", name: "bm_confirm_email", widget: "string", required: false, hint: "Confirmer par Email" }
+              - { label: "[Fenêtre réservation] bm_err_dates", name: "bm_err_dates", widget: "string", required: false, hint: "Veuillez sélectionner vos dates d'arrivée et de départ." }
+              - { label: "[Fenêtre réservation] bm_err_min", name: "bm_err_min", widget: "string", required: false, hint: "Séjour minimum : 2 nuits." }
+              - { label: "[Widget réservation] bk_warn", name: "bk_warn", widget: "text", required: false, hint: "La résidence accueille un maximum de 6 personnes (adultes + enfants). Veuillez ajuster le …" }
+              - { label: "[Fenêtre réservation] bm_subtotal", name: "bm_subtotal", widget: "string", required: false, hint: "Hébergement" }
+              - { label: "[Fenêtre réservation] bm_extras_title", name: "bm_extras_title", widget: "string", required: false, hint: "Options & Services" }
+              - { label: "[Options réservation] opt_cleaning", name: "opt_cleaning", widget: "string", required: false, hint: "Frais de ménage (obligatoire)" }
+              - { label: "[Options réservation] opt_latecheckout", name: "opt_latecheckout", widget: "string", required: false, hint: "Late check-out 14h" }
+              - { label: "[Options réservation] opt_transfer", name: "opt_transfer", widget: "string", required: false, hint: "Transfert aéroport aller-retour" }
+              - { label: "[Options réservation] opt_subject", name: "opt_subject", widget: "string", required: false, hint: "sous réserve de disponibilité" }
+              - { label: "[Bandeau défilant] m1_l", name: "m1_l", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Bandeau défilant] m2", name: "m2", widget: "string", required: false, hint: "Front de mer" }
+              - { label: "[Bandeau défilant] m3", name: "m3", widget: "string", required: false, hint: "Interlocuteur dédié" }
+              - { label: "[Résidence] rt_e", name: "rt_e", widget: "string", required: false, hint: "La Résidence" }
+              - { label: "[Résidence] rt", name: "rt", widget: "string", required: false, hint: "Votre Sanctuaire Privé" }
+              - { label: "[Résidence] rd", name: "rd", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rd2", name: "rd2", widget: "text", required: false, hint: "Résidence d'exception de trois chambres avec bureau et salle à manger privée au 14ᵉ étage.…" }
+              - { label: "[Résidence] rb", name: "rb", widget: "string", required: false, hint: "3+1" }
+              - { label: "[Résidence] rb_l", name: "rb_l", widget: "string", required: false, hint: "Chambres + Bureau" }
+              - { label: "[Résidence] rba", name: "rba", widget: "string", required: false, hint: "3" }
+              - { label: "[Résidence] rba_l", name: "rba_l", widget: "string", required: false, hint: "Salles de bains" }
+              - { label: "[Résidence] rsq", name: "rsq", widget: "string", required: false, hint: "231 m²" }
+              - { label: "[Résidence] rsq_l", name: "rsq_l", widget: "string", required: false, hint: "Surface" }
+              - { label: "[Résidence] rfl", name: "rfl", widget: "string", required: false, hint: "Étage" }
+              - { label: "[Résidence] rra_l", name: "rra_l", widget: "string", required: false, hint: "Note exceptionnelle" }
+              - { label: "[Résidence] rra_s", name: "rra_s", widget: "string", required: false, hint: "Avis vérifiés des voyageurs" }
+              - { label: "[Bloc CTA] cta_mid_h", name: "cta_mid_h", widget: "string", required: false, hint: "Vérifiez les Disponibilités" }
+              - { label: "[Bloc CTA] cta_mid_p", name: "cta_mid_p", widget: "string", required: false, hint: "Tarifs en temps réel, réservation instantanée, interlocuteur dédié." }
+              - { label: "[Galerie] gal", name: "gal", widget: "string", required: false, hint: "Chaque pièce, une invitation au voyage." }
+              - { label: "[Prestations] at", name: "at", widget: "string", required: false, hint: "Prestations & Services" }
+              - { label: "[Prestations] as", name: "as", widget: "string", required: false, hint: "Accès exclusif aux installations du 1 Hotel South Beach" }
+              - { label: "[Prestations] a1", name: "a1", widget: "string", required: false, hint: "Plage Privée 600 Pieds" }
+              - { label: "[Prestations] a1d", name: "a1d", widget: "text", required: false, hint: "180 mètres de sable blanc fin le long de l'Atlantique. Chaises longues, parasols, cabanas …" }
+              - { label: "[Prestations] a2", name: "a2", widget: "string", required: false, hint: "4 Piscines dont Rooftop" }
+              - { label: "[Prestations] a2d", name: "a2d", widget: "text", required: false, hint: "Piscine principale vue océan, rooftop au 18ᵉ étage avec vue 360°, bassins thermaux, piscin…" }
+              - { label: "[Prestations] a3", name: "a3", widget: "string", required: false, hint: "Bamford Wellness Spa" }
+              - { label: "[Prestations] a3d", name: "a3d", widget: "text", required: false, hint: "Spa holistique de luxe — soins naturels, massages, thérapies durables. Consultations bien-…" }
+              - { label: "[Prestations] a4", name: "a4", widget: "string", required: false, hint: "Centre Anatomy Fitness" }
+              - { label: "[Prestations] a4d", name: "a4d", widget: "text", required: false, hint: "18 000 sq ft — équipements premium, coaching personnel, yoga, cours collectifs 24/7." }
+              - { label: "[Prestations] a5", name: "a5", widget: "string", required: false, hint: "7 Restaurants & Bars" }
+              - { label: "[Prestations] a5d", name: "a5d", widget: "text", required: false, hint: "AVIV (Chef Solomonov), Watr Rooftop 18ᵉ étage, Tala Beach, Plnthouse, Drift, Sandbox, Summ…" }
+              - { label: "[Prestations] a6", name: "a6", widget: "string", required: false, hint: "Conciergerie Sur-Mesure" }
+              - { label: "[Prestations] a6d", name: "a6d", widget: "text", required: false, hint: "Transferts aéroport, réservations restaurants, excursions privées, chef à domicile — votre…" }
+              - { label: "[Distinctions] d1", name: "d1", widget: "string", required: false, hint: "MICHELIN Key 2026" }
+              - { label: "[Distinctions] d2", name: "d2", widget: "string", required: false, hint: "World Travel Awards 2025" }
+              - { label: "[Distinctions] d3", name: "d3", widget: "string", required: false, hint: "Green Key 5/5" }
+              - { label: "[Distinctions] d4", name: "d4", widget: "string", required: false, hint: "Condé Nast Traveler" }
+              - { label: "[Expérience] et_e", name: "et_e", widget: "string", required: false, hint: "L'Expérience" }
+              - { label: "[Expérience] et", name: "et", widget: "string", required: false, hint: "L'Expérience Miami Only One" }
+              - { label: "[Expérience] es2", name: "es2", widget: "text", required: false, hint: "Bien plus qu'une location — un séjour sur-mesure avec interlocuteur dédié" }
+              - { label: "[Expérience] ed", name: "ed", widget: "string", required: false, hint: "Miami Only One" }
+              - { label: "[Expérience] eo", name: "eo", widget: "string", required: false, hint: "Plateformes classiques" }
+              - { label: "[Expérience] er1", name: "er1", widget: "string", required: false, hint: "Votre interlocuteur" }
+              - { label: "[Expérience] ev1d", name: "ev1d", widget: "string", required: false, hint: "Dédié & francophone" }
+              - { label: "[Expérience] ev1o", name: "ev1o", widget: "string", required: false, hint: "Support automatisé" }
+              - { label: "[Expérience] er2", name: "er2", widget: "string", required: false, hint: "Expérience" }
+              - { label: "[Expérience] ev2d", name: "ev2d", widget: "string", required: false, hint: "Sur-mesure, personnalisée" }
+              - { label: "[Expérience] ev2o", name: "ev2o", widget: "string", required: false, hint: "Standardisée" }
+              - { label: "[Expérience] er3", name: "er3", widget: "string", required: false, hint: "Prestations resort" }
+              - { label: "[Expérience] ev3d", name: "ev3d", widget: "string", required: false, hint: "Accès complet inclus" }
+              - { label: "[Expérience] ev3o", name: "ev3o", widget: "string", required: false, hint: "En supplément" }
+              - { label: "[Expérience] er4", name: "er4", widget: "string", required: false, hint: "Flexibilité" }
+              - { label: "[Expérience] ev4d", name: "ev4d", widget: "string", required: false, hint: "Arrangement direct" }
+              - { label: "[Expérience] ev4o", name: "ev4o", widget: "string", required: false, hint: "Conditions rigides" }
+              - { label: "[Expérience] er5", name: "er5", widget: "string", required: false, hint: "Commission" }
+              - { label: "[Expérience] ev5d", name: "ev5d", widget: "string", required: false, hint: "0%" }
+              - { label: "[Expérience] ev5o", name: "ev5o", widget: "string", required: false, hint: "15-20%" }
+              - { label: "[Chambres] room1", name: "room1", widget: "string", required: false, hint: "Suite Parentale" }
+              - { label: "[Chambres] room1d", name: "room1d", widget: "text", required: false, hint: "Lit King Size, salle de bains en marbre et pierre naturelle, literie haute couture, Smart …" }
+              - { label: "[Chambres] room2", name: "room2", widget: "string", required: false, hint: "Suite Junior" }
+              - { label: "[Chambres] room2d", name: "room2d", widget: "text", required: false, hint: "Lit King Size, salle de bains privative, espace intimiste pour vos hôtes." }
+              - { label: "[Chambres] room3", name: "room3", widget: "string", required: false, hint: "Chambre Invités" }
+              - { label: "[Chambres] room3d", name: "room3d", widget: "text", required: false, hint: "Lit Queen, finitions raffinées, Smart TV, accès direct à la salle de bains." }
+              - { label: "[Chambres] room4", name: "room4", widget: "string", required: false, hint: "Bureau & Salle à Manger Privée" }
+              - { label: "[Chambres] room4d", name: "room4d", widget: "text", required: false, hint: "Espace rare : table dressée pour 8 convives. Idéal pour dîners privés ou expériences chef." }
+              - { label: "[Partage] w_share", name: "w_share", widget: "string", required: false, hint: "Partager" }
+              - { label: "[Alerte prix] pa_title", name: "pa_title", widget: "string", required: false, hint: "Alerte Prix" }
+              - { label: "[Alerte prix] pa_desc", name: "pa_desc", widget: "string", required: false, hint: "Recevez une notification dès que les tarifs baissent sur vos dates." }
+              - { label: "[Alerte prix] pa_btn", name: "pa_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte annulation] ca_title", name: "ca_title", widget: "string", required: false, hint: "Alerte Annulation" }
+              - { label: "[Alerte annulation] ca_desc", name: "ca_desc", widget: "text", required: false, hint: "Vos dates ne sont pas disponibles ? Soyez alerté en priorité si une annulation libère le c…" }
+              - { label: "[Alerte annulation] ca_btn", name: "ca_btn", widget: "string", required: false, hint: "Activer" }
+              - { label: "[Alerte] alert_ok", name: "alert_ok", widget: "string", required: false, hint: "Alerte activée — nous vous préviendrons." }
+              - { label: "[Quartier] qt_h", name: "qt_h", widget: "string", required: false, hint: "Le Quartier" }
+              - { label: "[Quartier] qt_s", name: "qt_s", widget: "text", required: false, hint: "South Beach, l'une des adresses les plus convoitées au monde — et votre résidence en est l…" }
+              - { label: "[Quartier] qt1", name: "qt1", widget: "string", required: false, hint: "Plage & Boardwalk" }
+              - { label: "[Quartier] qt1d", name: "qt1d", widget: "text", required: false, hint: "Sortez de l'ascenseur, vous y êtes. 600 pieds de sable blanc, eaux turquoise de l'Atlantiq…" }
+              - { label: "[Quartier] qt1t", name: "qt1t", widget: "string", required: false, hint: "Accès direct — 0 min" }
+              - { label: "[Quartier] qt2", name: "qt2", widget: "string", required: false, hint: "Lincoln Road Mall" }
+              - { label: "[Quartier] qt2d", name: "qt2d", widget: "text", required: false, hint: "Le boulevard piétonnier iconique de South Beach. Boutiques de créateurs, galeries d'art, t…" }
+              - { label: "[Quartier] qt2t", name: "qt2t", widget: "string", required: false, hint: "5 min à pied" }
+              - { label: "[Quartier] qt3", name: "qt3", widget: "string", required: false, hint: "Art Deco Historic District" }
+              - { label: "[Quartier] qt3d", name: "qt3d", widget: "text", required: false, hint: "Plus de 800 bâtiments Art Déco des années 1920-1940, classés au patrimoine national. Ocean…" }
+              - { label: "[Quartier] qt3t", name: "qt3t", widget: "string", required: false, hint: "10 min à pied" }
+              - { label: "[Quartier] qt4", name: "qt4", widget: "string", required: false, hint: "Sunset Harbour" }
+              - { label: "[Quartier] qt4d", name: "qt4d", widget: "text", required: false, hint: "Le quartier préféré des locaux. Restaurants farm-to-table, cafés artisanaux, boutiques ind…" }
+              - { label: "[Quartier] qt4t", name: "qt4t", widget: "string", required: false, hint: "8 min en voiture" }
+              - { label: "[Quartier] qt5", name: "qt5", widget: "string", required: false, hint: "Wynwood & Design District" }
+              - { label: "[Quartier] qt5d", name: "qt5d", widget: "text", required: false, hint: "L'épicentre de l'art contemporain à Miami. Wynwood Walls, galeries, street art, rooftop ba…" }
+              - { label: "[Quartier] qt5t", name: "qt5t", widget: "string", required: false, hint: "15 min en voiture" }
+              - { label: "[Quartier] qt6", name: "qt6", widget: "string", required: false, hint: "Everglades & Keys" }
+              - { label: "[Quartier] qt6d", name: "qt6d", widget: "text", required: false, hint: "Aventure à portée de main. Airboat dans les Everglades, plongée à Key Largo, coucher de so…" }
+              - { label: "[Quartier] qt6t", name: "qt6t", widget: "string", required: false, hint: "Excursions à la journée" }
+              - { label: "[FAQ] ft", name: "ft", widget: "string", required: false, hint: "Questions Fréquentes" }
+              - { label: "[FAQ] fq1", name: "fq1", widget: "string", required: false, hint: "Quelle est la durée minimale de séjour ?" }
+              - { label: "[FAQ] fa1", name: "fa1", widget: "text", required: false, hint: "Minimum 2 nuits. Tarifs dégressifs à partir de 7 nuits. Contactez votre interlocuteur dédi…" }
+              - { label: "[FAQ] fq2", name: "fq2", widget: "string", required: false, hint: "Puis-je amener mon animal de compagnie ?" }
+              - { label: "[FAQ] fa2", name: "fa2", widget: "string", required: false, hint: "Oui — le 1 Hotel South Beach est pet-friendly. Supplément : $50/nuit." }
+              - { label: "[FAQ] fq3", name: "fq3", widget: "string", required: false, hint: "Le petit-déjeuner est-il inclus ?" }
+              - { label: "[FAQ] fa3", name: "fa3", widget: "text", required: false, hint: "Packages disponibles avec buffet AVIV (cuisine israélienne étoilée) : $45/pers./jour." }
+              - { label: "[FAQ] fq4", name: "fq4", widget: "string", required: false, hint: "Accès piscines et plage inclus ?" }
+              - { label: "[FAQ] fa4", name: "fa4", widget: "text", required: false, hint: "Oui, accès illimité aux 4 piscines (dont rooftop 18ᵉ étage), plage privée 600 pieds, Bamfo…" }
+              - { label: "[FAQ] fq5", name: "fq5", widget: "string", required: false, hint: "Événements privés possibles ?" }
+              - { label: "[FAQ] fa5", name: "fa5", widget: "text", required: false, hint: "Oui — mariages, séminaires, fêtes privées. Votre interlocuteur dédié coordonne l'ensemble." }
+              - { label: "[Contact] ct", name: "ct", widget: "string", required: false, hint: "Planifiez Votre Séjour" }
+              - { label: "[Contact] ctsub", name: "ctsub", widget: "string", required: false, hint: "Votre interlocuteur dédié répond en moins d'1 heure" }
+              - { label: "[Contact] ct1", name: "ct1", widget: "string", required: false, hint: "Appeler" }
+              - { label: "[Contact] ct2", name: "ct2", widget: "string", required: false, hint: "WhatsApp" }
+              - { label: "[Contact] ct3", name: "ct3", widget: "string", required: false, hint: "Email" }
+              - { label: "[SEO (texte bas de page)] seo1h", name: "seo1h", widget: "string", required: false, hint: "Location de luxe au 1 Hotel South Beach — Résidence privée Miami" }
+              - { label: "[SEO (texte bas de page)] seo1p1", name: "seo1p1", widget: "text", required: false, hint: "Découvrez Miami Only One : une résidence privée d'exception de 3 chambres avec vue directe…" }
+              - { label: "[SEO (texte bas de page)] seo1p2", name: "seo1p2", widget: "text", required: false, hint: "Réservation directe avec un interlocuteur dédié francophone, sans commission de plateforme…" }
+              - { label: "[SEO (texte bas de page)] seo2h", name: "seo2h", widget: "text", required: false, hint: "Vacances de luxe à South Beach Miami — Prestations hôtelières cinq étoiles" }
+              - { label: "[SEO (texte bas de page)] seo2p", name: "seo2p", widget: "text", required: false, hint: "En séjournant dans notre résidence privée, vous bénéficiez de l'ensemble des services du 1…" }
+              - { label: "[SEO (texte bas de page)] seo3h", name: "seo3h", widget: "string", required: false, hint: "Pourquoi réserver en direct votre résidence de luxe à Miami Beach" }
+              - { label: "[SEO (texte bas de page)] seo3p", name: "seo3p", widget: "text", required: false, hint: "En réservant directement avec Miami Only One, vous bénéficiez d'un interlocuteur dédié fra…" }
+              - { label: "[Pied de page] foot_p", name: "foot_p", widget: "text", required: false, hint: "Résidence privée de luxe face à l'océan Atlantique. Réservation directe, sans commission, …" }
+              - { label: "[Pied de page] foot_nav", name: "foot_nav", widget: "string", required: false, hint: "Navigation" }
+              - { label: "[Pied de page] foot_contact", name: "foot_contact", widget: "string", required: false, hint: "Contact" }
