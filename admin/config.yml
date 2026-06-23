@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Dossier où sont stockées les images téléversées depuis l'admin
+media_folder: "images"
+public_folder: "/images"
+
+locale: "fr"
+
+collections:
+  - name: "site"
+    label: "Site"
+    files:
+      - name: "accueil"
+        label: "Contenu du site"
+        file: "content.json"
+        format: "json"
+        description: "Modifiez les textes d'accueil, la photo, le logo, les tarifs et les coordonnées."
+        fields:
+          - label: "Photo & logo"
+            name: "media"
+            widget: "object"
+            fields:
+              - { label: "Photo d'accueil (hero)", name: "heroImage", widget: "image" }
+              - { label: "Logo", name: "logo", widget: "image" }
+
+          - label: "Tarifs (USD par nuit)"
+            name: "pricing"
+            widget: "object"
+            fields:
+              - { label: "Tarif mi-saison", name: "baseMid", widget: "number", value_type: "int", min: 0 }
+              - { label: "Tarif haute saison (déc.–fév.)", name: "baseWinter", widget: "number", value_type: "int", min: 0 }
+              - { label: "Tarif basse saison (juin–sept.)", name: "baseSummer", widget: "number", value_type: "int", min: 0 }
+              - { label: "Frais de ménage (obligatoire)", name: "cleaning", widget: "number", value_type: "int", min: 0 }
+              - { label: "Late check-out", name: "lateCheckout", widget: "number", value_type: "int", min: 0 }
+              - { label: "Transfert aéroport (A/R)", name: "transfer", widget: "number", value_type: "int", min: 0 }
+              - { label: "Remise dès 7 nuits (%)", name: "discount7Pct", widget: "number", value_type: "int", min: 0, max: 100 }
+              - { label: "Remise dès 14 nuits (%)", name: "discount14Pct", widget: "number", value_type: "int", min: 0, max: 100 }
+
+          - label: "Coordonnées"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Téléphone (format +1XXXXXXXXXX)", name: "phone", widget: "string" }
+              - { label: "WhatsApp (chiffres uniquement, ex. 13056041000)", name: "whatsapp", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+
+          - label: "Texte d'accueil (hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - label: "Français"
+                name: "fr"
+                widget: "object"
+                fields:
+                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
+                  - { label: "Titre principal", name: "title", widget: "string" }
+                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
+                  - { label: "Bouton 1", name: "cta1", widget: "string" }
+                  - { label: "Bouton 2", name: "cta2", widget: "string" }
+              - label: "English"
+                name: "en"
+                widget: "object"
+                fields:
+                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
+                  - { label: "Titre principal", name: "title", widget: "string" }
+                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
+                  - { label: "Bouton 1", name: "cta1", widget: "string" }
+                  - { label: "Bouton 2", name: "cta2", widget: "string" }
+              - label: "Español"
+                name: "es"
+                widget: "object"
+                fields:
+                  - { label: "Sur-titre", name: "eyebrow", widget: "string" }
+                  - { label: "Titre principal", name: "title", widget: "string" }
+                  - { label: "Sous-titre", name: "subtitle", widget: "text" }
+                  - { label: "Bouton 1", name: "cta1", widget: "string" }
+                  - { label: "Bouton 2", name: "cta2", widget: "string" }

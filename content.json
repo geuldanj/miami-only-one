@@ -1,0 +1,44 @@
+{
+  "media": {
+    "heroImage": "/images/hero.jpg",
+    "logo": "/images/logo-transparent.png"
+  },
+  "pricing": {
+    "baseMid": 850,
+    "baseWinter": 1200,
+    "baseSummer": 750,
+    "cleaning": 250,
+    "lateCheckout": 150,
+    "transfer": 200,
+    "discount7Pct": 10,
+    "discount14Pct": 15
+  },
+  "contact": {
+    "phone": "+13056041000",
+    "whatsapp": "13056041000",
+    "email": "hello@miamionlyone.com"
+  },
+  "hero": {
+    "fr": {
+      "eyebrow": "SOUTH BEACH, MIAMI — RÉSIDENCE PRIVÉE",
+      "title": "Une adresse d'exception face à l'océan",
+      "subtitle": "Résidence privée de luxe au cœur du 1 Hotel South Beach — 600 pieds de plage, sanctuaire durable étoilé MICHELIN. Accès exclusif aux restaurants, spas et piscines du resort.",
+      "cta1": "Voir les Tarifs & Disponibilités",
+      "cta2": "Contacter Votre Interlocuteur"
+    },
+    "en": {
+      "eyebrow": "SOUTH BEACH, MIAMI — PRIVATE RESIDENCE",
+      "title": "An Exceptional Oceanfront Address",
+      "subtitle": "Private luxury residence in the heart of 1 Hotel South Beach — 600 feet of beachfront, MICHELIN-starred sustainable sanctuary. Exclusive access to restaurants, spas and pools.",
+      "cta1": "View Rates & Availability",
+      "cta2": "Contact Your Dedicated Agent"
+    },
+    "es": {
+      "eyebrow": "SOUTH BEACH, MIAMI — RESIDENCIA PRIVADA",
+      "title": "Una dirección excepcional frente al océano",
+      "subtitle": "Residencia privada de lujo en el corazón del 1 Hotel South Beach — 600 pies de playa, santuario sostenible MICHELIN. Acceso exclusivo a restaurantes, spas y piscinas.",
+      "cta1": "Ver Tarifas y Disponibilidad",
+      "cta2": "Contactar Su Agente Dedicado"
+    }
+  }
+}
